@@ -3,116 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>EvoFlow — ابدأ معنا</title>
+<title>EvoFlow</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#F4F1E8;
-    --page-bg:#0F3028;
-    --page-bg-deep:#0A2119;
-    --card:#FBF8F0;
-    --card-ink:#1B1A22;
-    --line:#DCD3B8;
-    --gold:#C6A24D;
-    --gold-deep:#A5842F;
-    --green:#1F4E42;
-    --muted:#7A7462;
-    --error:#B3432B;
+    --ink:#F4F1E8; --page-bg:#0F3028; --page-bg-deep:#0A2119;
+    --card:#FBF8F0; --card-ink:#1B1A22; --line:#DCD3B8;
+    --gold:#C6A24D; --gold-deep:#A5842F; --green:#1F4E42;
+    --muted:#7A7462; --error:#B3432B;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
-    font-family:'Tajawal', system-ui, sans-serif;
-    background:radial-gradient(circle at 20% 0%, var(--page-bg) 0%, var(--page-bg-deep) 70%);
-    color:var(--ink);
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    font-family:'Tajawal',system-ui,sans-serif;
+    background:radial-gradient(circle at 20% 0%,var(--page-bg) 0%,var(--page-bg-deep) 70%);
+    background-attachment:fixed;
+    color:var(--ink); min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
     padding:36px 16px calc(36px + env(safe-area-inset-bottom,0px));
     line-height:1.6;
   }
   .wrap{width:100%;max-width:540px;}
-  .brand{text-align:center;margin-bottom:26px;}
-  .brand .mark{
-    font-size:14px;
-    font-weight:800;
-    letter-spacing:.16em;
-    color:var(--gold);
-    text-transform:uppercase;
-  }
-  h1{
-    font-size:27px;
-    font-weight:800;
-    margin:14px 0 8px;
-    line-height:1.35;
-    color:#fff;
-  }
+  .head{text-align:center;margin-bottom:26px;}
+  h1{font-size:30px;font-weight:500;margin:0 0 8px;line-height:1.35;color:#fff;}
   .sub{color:#C9CFC9;font-size:15px;margin:0;}
   form{
-    background:var(--card);
-    border:1px solid var(--gold);
-    border-radius:18px;
-    padding:28px 24px;
+    background:var(--card); border:1px solid var(--gold);
+    border-radius:18px; padding:28px 24px;
     box-shadow:0 8px 30px rgba(0,0,0,.25);
   }
-  .field{margin-bottom:20px;}
-  .field:last-of-type{margin-bottom:0;}
-  label{
-    display:block;
-    font-size:14px;
-    font-weight:700;
-    margin-bottom:8px;
-    color:var(--card-ink);
+  .field{margin-bottom:22px;}
+  label,.q{display:block;font-size:14.5px;font-weight:700;margin-bottom:9px;color:var(--card-ink);}
+  input[type=text],input[type=tel],select,textarea{
+    width:100%; border:1.5px solid var(--line); border-radius:10px;
+    padding:13px 14px; font-family:inherit; font-size:15px;
+    background:#fff; color:var(--card-ink); transition:border-color .15s ease;
   }
-  input[type=text], input[type=email], input[type=tel], select, textarea{
-    width:100%;
-    border:1.5px solid var(--line);
-    border-radius:10px;
-    padding:13px 14px;
-    font-family:inherit;
-    font-size:15px;
-    background:#fff;
-    color:var(--card-ink);
-    transition:border-color .15s ease;
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(31,78,66,.14);}
+  textarea{min-height:96px;resize:vertical;}
+  .phone{display:flex;gap:8px;direction:ltr;}
+  .phone select{width:44%;flex:none;}
+  .phone input{flex:1;text-align:left;}
+  .opts{display:flex;flex-wrap:wrap;gap:8px;}
+  .opts label{margin:0;font-weight:500;cursor:pointer;}
+  .opts input{position:absolute;opacity:0;pointer-events:none;}
+  .opts span{
+    display:block;padding:11px 16px;border:1.5px solid var(--line);
+    border-radius:10px;background:#fff;font-size:14.5px;transition:all .15s ease;
   }
-  input:focus, select:focus, textarea:focus{
-    outline:none;
-    border-color:var(--green);
-    box-shadow:0 0 0 3px rgba(31,78,66,.12);
-  }
-  textarea{min-height:88px;resize:vertical;}
-  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%237A7462' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 14px center;padding-left:36px;}
+  .opts input:checked + span{background:var(--green);border-color:var(--green);color:#fff;font-weight:700;}
+  .opts input:focus-visible + span{box-shadow:0 0 0 3px rgba(31,78,66,.3);}
   .hint{font-size:12.5px;color:var(--error);margin-top:6px;display:none;}
-  .field.invalid input, .field.invalid select, .field.invalid textarea{border-color:var(--error);}
   .field.invalid .hint{display:block;}
+  .field.invalid input[type=text],.field.invalid input[type=tel],.field.invalid select,.field.invalid textarea,.field.invalid .opts span{border-color:var(--error);}
   button{
-    width:100%;
-    background:linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
-    color:#20180A;
-    border:none;
-    border-radius:10px;
-    padding:15px;
-    font-family:inherit;
-    font-size:16px;
-    font-weight:800;
-    cursor:pointer;
-    margin-top:6px;
-    transition:filter .15s ease;
+    width:100%; background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);
+    color:#20180A; border:none; border-radius:10px; padding:15px;
+    font-family:inherit; font-size:16px; font-weight:800; cursor:pointer; margin-top:4px;
   }
   button:hover{filter:brightness(1.06);}
   button:disabled{opacity:.6;cursor:not-allowed;}
-  .privacy{text-align:center;font-size:12.5px;color:var(--muted);margin-top:16px;}
-  .success{text-align:center;padding:40px 24px;background:var(--card);border-radius:18px;border:1px solid var(--gold);}
-  .success .check{
-    width:56px;height:56px;border-radius:50%;
-    background:var(--green);color:var(--gold);
-    display:flex;align-items:center;justify-content:center;
-    font-size:26px;margin:0 auto 18px;
-  }
-  .success h2{font-size:21px;margin:0 0 8px;color:var(--card-ink);}
+  .fail{text-align:center;color:var(--error);font-size:13.5px;margin:12px 0 0;display:none;}
+  .success{text-align:center;padding:40px 24px;background:var(--card);border-radius:18px;border:1px solid var(--gold);color:var(--card-ink);}
+  .check{width:56px;height:56px;border-radius:50%;background:var(--green);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 18px;}
+  .success h2{font-size:21px;margin:0 0 8px;}
   .success p{color:var(--muted);margin:0;}
   .hidden{display:none !important;}
 </style>
@@ -120,139 +76,135 @@
 <body>
 <div class="wrap">
 
-  <div class="brand">
-    <div class="mark">EvoFlow</div>
-    <h1>ابدأ رحلتك مع الأتمتة</h1>
-    <p class="sub">اخبرنا عن مشروعك وسنتواصل معك قريباً</p>
+  <div class="head">
+    <h1>أهلاً بيك</h1>
+    <p class="sub">املأ هذا الفورم البسيط عشان نتواصل معاك</p>
   </div>
 
-  <form id="leadForm">
+  <form id="leadForm" novalidate>
 
     <div class="field" data-field="name">
-      <label for="name">الاسم الكامل</label>
-      <input type="text" id="name" name="name">
-      <div class="hint">من فضلك أدخل اسمك</div>
-    </div>
-
-    <div class="field" data-field="email">
-      <label for="email">البريد الإلكتروني</label>
-      <input type="email" id="email" name="email">
-      <div class="hint">أدخل بريد إلكتروني صحيح</div>
-    </div>
-
-    <div class="field" data-field="whatsapp">
-      <label for="whatsapp">رقم الواتساب</label>
-      <input type="tel" id="whatsapp" name="whatsapp">
-      <div class="hint">من فضلك أدخل رقم واتساب صحيح</div>
-    </div>
-
-    <div class="field" data-field="avg_clients">
-      <label for="avg_clients">كم متوسط عملائك اللي يجوك شهرياً؟</label>
-      <input type="text" id="avg_clients" name="avg_clients">
-      <div class="hint">أخبرنا بمتوسط عدد العملاء شهرياً</div>
+      <label for="name">الاسم</label>
+      <input type="text" id="name" autocomplete="name">
+      <div class="hint">اكتب اسمك</div>
     </div>
 
     <div class="field" data-field="services">
-      <label for="services">طبيعة خدماتك التدريبية؟</label>
-      <input type="text" id="services" name="services">
-      <div class="hint">أخبرنا عن نوع خدماتك التدريبية</div>
+      <label for="services">مجال شغلك</label>
+      <input type="text" id="services">
+      <div class="hint">اكتب مجال شغلك</div>
+    </div>
+
+    <div class="field" data-field="whatsapp">
+      <label for="cc">رقمك اللي تستخدم عليه الواتساب</label>
+      <div class="phone">
+        <select id="cc" aria-label="كود الدولة"></select>
+        <input type="tel" id="whatsapp" inputmode="numeric" autocomplete="tel-national" placeholder="5xxxxxxxx">
+      </div>
+      <div class="hint">اختر الدولة واكتب رقمك بدون الصفر في البداية</div>
+    </div>
+
+    <div class="field" data-field="avg_clients">
+      <span class="q">كم متوسط الرسائل اللي تجيك من عملائك المحتملين (الليدز) أسبوعياً؟</span>
+      <div class="opts">
+        <label><input type="radio" name="avg_clients" value="من 5 الى 15"><span>من 5 إلى 15</span></label>
+        <label><input type="radio" name="avg_clients" value="من 15 الى 30"><span>من 15 إلى 30</span></label>
+        <label><input type="radio" name="avg_clients" value="من 30 الى +50"><span>من 30 إلى +50</span></label>
+      </div>
+      <div class="hint">اختر إجابة</div>
     </div>
 
     <div class="field" data-field="price_per_client">
-      <label for="price_per_client">كم متوسط سعر خدمتك للعميل الواحد؟</label>
-      <select id="price_per_client" name="price_per_client">
-        <option value="" selected></option>
-        <option value="اقل من 300$">أقل من 300$</option>
-        <option value="300-800">300$ – 800$</option>
-        <option value="800-2000">800$ – 2,000$</option>
-        <option value="اكثر من 2000$">أكثر من 2,000$</option>
-      </select>
-      <div class="hint">من فضلك اختر متوسط السعر</div>
+      <span class="q">كم سعر خدمتك للعميل الواحد؟</span>
+      <div class="opts">
+        <label><input type="radio" name="price_per_client" value="من 150 الى 250 دولار"><span>150 – 250 دولار</span></label>
+        <label><input type="radio" name="price_per_client" value="من 250 الى 500 دولار"><span>250 – 500 دولار</span></label>
+        <label><input type="radio" name="price_per_client" value="من 500 الى 1000 دولار"><span>500 – 1000 دولار</span></label>
+        <label><input type="radio" name="price_per_client" value="من 1000 الى 2500 دولار+"><span>1000 – 2500 دولار+</span></label>
+      </div>
+      <div class="hint">اختر إجابة</div>
     </div>
 
     <div class="field" data-field="challenges">
-      <label for="challenges">أهم التحديات والمشاكل اللي تمنعك من النمو؟</label>
-      <textarea id="challenges" name="challenges"></textarea>
-      <div class="hint">أخبرنا عن أهم التحديات</div>
+      <label for="challenges">ما أهم المشاكل اللي تواجهك وتمنعك من النمو، وتشوف أن الأتمتة ستحلها لك؟</label>
+      <textarea id="challenges"></textarea>
+      <div class="hint">اكتب مشاكلك باختصار</div>
     </div>
 
     <div class="field" data-field="team">
       <label for="team">هل تشتغل مع فريق أو لوحدك؟</label>
-      <input type="text" id="team" name="team">
-      <div class="hint">أخبرنا عن طريقة عملك الحالية</div>
+      <input type="text" id="team">
+      <div class="hint">اكتب إجابتك</div>
     </div>
 
-    <button type="submit" id="submitBtn">أرسل الطلب — سنبدأ معك فورًا</button>
-    <p class="privacy">🔒 بياناتك محمية ولن تُشارك مع أي طرف ثالث</p>
+    <button type="submit" id="submitBtn">أرسل الفورم</button>
+    <p class="fail" id="fail">ما وصل الفورم. تأكد من اتصالك وحاول مرة ثانية.</p>
   </form>
 
   <div class="success hidden" id="successBox">
     <div class="check">✓</div>
-    <h2>تم استلام النموذج بنجاح!</h2>
-    <p>شكراً لك على استكمال النموذج — سنتواصل معك على الإنستقرام قريباً</p>
+    <h2>وصلنا الفورم، شكراً لك</h2>
+    <p>راح نتواصل معاك على الإنستقرام قريباً</p>
   </div>
 
 </div>
 
 <script>
 (function(){
-  var params = new URLSearchParams(window.location.search);
-  var igsid = params.get('ref') || '';
-
+  var igsid = new URLSearchParams(location.search).get('ref') || '';
   var form = document.getElementById('leadForm');
-  var submitBtn = document.getElementById('submitBtn');
+  var btn = document.getElementById('submitBtn');
+  var fail = document.getElementById('fail');
 
-  function setInvalid(fieldName, isInvalid){
-    var el = form.querySelector('[data-field="' + fieldName + '"]');
-    if(el) el.classList.toggle('invalid', isInvalid);
-  }
+  var countries = [
+    ['السعودية','966'],['الإمارات','971'],['الكويت','965'],['قطر','974'],['البحرين','973'],
+    ['عُمان','968'],['اليمن','967'],['العراق','964'],['الأردن','962'],['فلسطين','970'],
+    ['لبنان','961'],['سوريا','963'],['مصر','20'],['ليبيا','218'],['تونس','216'],
+    ['الجزائر','213'],['المغرب','212'],['السودان','249'],['تركيا','90'],
+    ['بريطانيا','44'],['أمريكا وكندا','1'],['ألمانيا','49'],['فرنسا','33']
+  ];
+  var cc = document.getElementById('cc');
+  countries.forEach(function(c){
+    var o = document.createElement('option');
+    o.value = c[1]; o.textContent = c[0] + ' (+' + c[1] + ')';
+    cc.appendChild(o);
+  });
 
-  function isValidEmail(v){
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  function mark(name, bad){
+    form.querySelector('[data-field="' + name + '"]').classList.toggle('invalid', bad);
+    return !bad;
   }
-
-  function isValidWhatsapp(v){
-    var digits = v.replace(/[^0-9]/g, '');
-    return digits.length >= 8;
-  }
+  function val(id){ return document.getElementById(id).value.trim(); }
+  function pick(name){ var r = form.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
+    fail.style.display = 'none';
 
-    var name = form.name.value.trim();
-    var email = form.email.value.trim();
-    var whatsapp = form.whatsapp.value.trim();
-    var avg_clients = form.avg_clients.value.trim();
-    var services = form.services.value.trim();
-    var price_per_client = form.price_per_client.value;
-    var challenges = form.challenges.value.trim();
-    var team = form.team.value.trim();
+    var digits = val('whatsapp').replace(/\D/g,'').replace(/^0+/,'');
+    var ok = [
+      mark('name', !val('name')),
+      mark('services', !val('services')),
+      mark('whatsapp', digits.length < 6 || digits.length > 12),
+      mark('avg_clients', !pick('avg_clients')),
+      mark('price_per_client', !pick('price_per_client')),
+      mark('challenges', !val('challenges')),
+      mark('team', !val('team'))
+    ].every(Boolean);
+    if(!ok) return;
 
-    var valid = true;
-    setInvalid('name', !name); if(!name) valid = false;
-    setInvalid('email', !isValidEmail(email)); if(!isValidEmail(email)) valid = false;
-    setInvalid('whatsapp', !isValidWhatsapp(whatsapp)); if(!isValidWhatsapp(whatsapp)) valid = false;
-    setInvalid('avg_clients', !avg_clients); if(!avg_clients) valid = false;
-    setInvalid('services', !services); if(!services) valid = false;
-    setInvalid('price_per_client', !price_per_client); if(!price_per_client) valid = false;
-    setInvalid('challenges', !challenges); if(!challenges) valid = false;
-    setInvalid('team', !team); if(!team) valid = false;
-
-    if(!valid) return;
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'جاري الإرسال...';
+    btn.disabled = true;
+    btn.textContent = 'جاري الإرسال...';
 
     var payload = {
       igsid: igsid,
-      name: name,
-      email: email,
-      whatsapp: whatsapp,
-      avg_clients: avg_clients,
-      services: services,
-      price_per_client: price_per_client,
-      challenges: challenges,
-      team: team
+      name: val('name'),
+      services: val('services'),
+      whatsapp: '+' + cc.value + digits,
+      avg_clients: pick('avg_clients'),
+      price_per_client: pick('price_per_client'),
+      challenges: val('challenges'),
+      team: val('team')
     };
 
     fetch('https://my-n8n-kernaf.duckdns.org/webhook/evoflow-form-submit', {
@@ -260,13 +212,15 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
-    .then(function(){
+    .then(function(res){
+      if(!res.ok) throw new Error('bad status');
       form.classList.add('hidden');
       document.getElementById('successBox').classList.remove('hidden');
     })
     .catch(function(){
-      form.classList.add('hidden');
-      document.getElementById('successBox').classList.remove('hidden');
+      fail.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'أرسل الفورم';
     });
   });
 })();
